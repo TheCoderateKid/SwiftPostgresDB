@@ -1,7 +1,13 @@
-[![CI](https://github.com/thecoderatekid/SwiftPostgresDB/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/SwiftPostgresDB/actions)
-[![Swift 5.9+](https://img.shields.io/badge/swift-5.9%2B-orange.svg)](https://swift.org)
-[![Platforms](https://img.shields.io/badge/platforms-macOS%2012%2B%20%7C%20Linux-blue.svg)](https://swift.org/platform-support)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![CI](https://github.com/thecoderatekid/SwiftPostgresDB/actions/workflows/ci.yml/badge.svg)](https://github.com/thecoderatekid/SwiftPostgresDB/actions)
+[![Swift 5.9+](https://img.shields.io/badge/swift-5.9%2B-orange?style=flat-square&logo=swift)](https://swift.org)
+[![Platforms](https://img.shields.io/badge/platforms-macOS%2012%2B%20%7C%20Linux-blue?style=flat-square&logo=apple&logo=linux)](https://swift.org/platform-support)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square&logo=opensource)](LICENSE)
+[![Code Coverage](https://img.shields.io/codecov/c/github/thecoderatekid/SwiftPostgresDB?style=flat-square&logo=codecov)](https://codecov.io/gh/thecoderatekid/SwiftPostgresDB)
+[![Docs](https://img.shields.io/badge/docs-SwiftDoc-blue?style=flat-square&logo=read-the-docs)](https://github.com/thecoderatekid/SwiftPostgresDB#readme)
+[![GitHub Stars](https://img.shields.io/github/stars/thecoderatekid/SwiftPostgresDB?style=flat-square&logo=github)](https://github.com/thecoderatekid/SwiftPostgresDB/stargazers)
+[![Contributors](https://img.shields.io/github/contributors/thecoderatekid/SwiftPostgresDB?style=flat-square&logo=github)](https://github.com/thecoderatekid/SwiftPostgresDB/graphs/contributors)
+[![Discord](https://img.shields.io/discord/000000000000000000?style=flat-square&logo=discord)](https://discord.gg/your-invite)
+[![Twitter Follow](https://img.shields.io/twitter/follow/yourhandle?style=flat-square&logo=twitter)](https://twitter.com/yourhandle)
 
 # SwiftPostgresDB
 
@@ -9,78 +15,90 @@ A lightweight, performant, and easy-to-use PostgreSQL integration for Swift 5.9+
 
 ---
 
-## Table of Contents
+## 📑 Table of Contents
 
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [ORM Example](#orm-example)
-- [Configuration](#configuration)
-  - [Environment & `.env`](#environment--env)
-  - [JSON/YAML](#jsonyaml)
-- [GitHub Actions](#github-actions)
-- [License](#license)
+- 📚 [Features](#features)
+- ⚙️ [Requirements](#requirements)
+- 🔧 [Installation](#installation)
+- 🚀 [Quick Start](#quick-start)
+- 🧩 [ORM Example](#orm-example)
+- ⚙️ [Configuration](#configuration)
+  - 🌐 [Environment & `.env`](#environment--env)
+  - 🗄️ [JSON/YAML](#jsonyaml)
+- 🤖 [GitHub Actions](#github-actions)
+- 📄 [License](#license)
 
 ---
 
-## Features
+## 📚 Features
 
-- **Connection Management**
+- 🤝 **Connection Management**
   - Async connection pooling
   - Configurable via environment variables, `.env` files, or JSON/YAML
 
-- **Query Execution**
+- 📝 **Query Execution**
   - Raw SQL & prepared statements
-  - Sync & Async APIs with Swift Concurrency (async/await)
+  - Sync & Async APIs with Swift Concurrency (`async`/`await`)
 
-- **ORM-like Abstraction**
+- 🧩 **ORM-like Abstraction**
   - Map `Codable` Swift types to PostgreSQL tables
   - Automatic CRUD operations
 
-- **Transaction Management**
+- 🔄 **Transaction Management**
   - Begin, Commit, Rollback
-  - Nested transactions via SAVEPOINT
+  - Nested transactions via `SAVEPOINT`
 
-- **Data Type Handling**
+- 📦 **Data Type Handling**
   - UUID, JSON/JSONB, arrays, timestamps → Swift types
   - Convenience initializers for `PostgresData`
 
-- **Error Handling**
+- 🚨 **Error Handling**
   - Clear, descriptive errors (`PostgresError`)
 
-- **Security**
+- 🔒 **Security**
   - Always uses prepared statements
   - Prevents SQL injection
 
-## Requirements
+---
+
+## ⚙️ Requirements
 
 - Swift 5.9+
 - macOS 12+ (Linux supported)
 - Swift Package Manager (SPM)
 
-## Installation
+---
+
+## 🔧 Installation
 
 In your `Package.swift`:
 
 ```swift
 dependencies: [
-  .package(url: "https://github.com/yourusername/SwiftPostgresDB.git", from: "1.0.0")
+    .package(url: "https://github.com/thecoderatekid/SwiftPostgresDB.git", from: "1.0.0"),
+],
+targets: [
+    .target(
+        name: "YourApp",
+        dependencies: [
+            .product(name: "SwiftPostgresDB", package: "SwiftPostgresDB"),
+        ]
+    ),
 ]
 ```
 
-And add `"SwiftPostgresDB"` to your target’s dependencies.
+---
 
-## Quick Start
+## 🚀 Quick Start
 
 ```swift
 import SwiftPostgresDB
 import NIOCore
 
 // 1. Load config (env/.env or JSON/YAML or defaults)
-let config = try PostgresConfiguration.load(           // throws on file errors
-    envFile: ".env",                                   // optional
-    configFile: "dbconfig.yaml"                        // optional
+let config = try PostgresConfiguration.load(
+    envFile: ".env",          // optional
+    configFile: "dbconfig.yaml" // optional
 )
 
 // 2. Create EventLoopGroup
@@ -102,17 +120,19 @@ let ts: Date = rows[0].column("ts")!.timestamp!
 print("Server time:", ts)
 ```
 
-## ORM Example
+---
+
+## 🧩 ORM Example
 
 ```swift
 import SwiftPostgresDB
 import NIOCore
 
 struct User: Model {
-  static let tableName = "users"
-  var id: UUID?
-  var name: String
-  var email: String
+    static let tableName = "users"
+    var id: UUID?
+    var name: String
+    var email: String
 }
 
 let repo = Repository<User>(executor: executor)
@@ -134,26 +154,30 @@ try await repo.update(updated)
 try await repo.delete(id: updated.id!)
 ```
 
-## Configuration
+---
 
-### Environment & `.env`
+## ⚙️ Configuration
 
-The package reads:
+### 🌐 Environment & `.env`
 
-- `PGHOST` (default: localhost)
-- `PGPORT` (default: 5432)
-- `PGUSER` (default: postgres)
-- `PGPASSWORD` (default: "")
-- `PGDATABASE` (default: postgres)
-- `PGTLS` (default: false)
+The package reads the following environment variables (with defaults):
 
-You may also load a `.env` file:
+| Variable    | Default     |
+| ----------- | ----------- |
+| `PGHOST`    | `localhost` |
+| `PGPORT`    | `5432`      |
+| `PGUSER`    | `postgres`  |
+| `PGPASSWORD`| `""`        |
+| `PGDATABASE`| `postgres`  |
+| `PGTLS`     | `false`     |
+
+Load a `.env` file:
 
 ```swift
 let config = try PostgresConfiguration.load(envFile: ".env")
 ```
 
-### JSON/YAML
+### 🗄️ JSON/YAML
 
 Provide a `config.yaml` or `config.json`:
 
@@ -172,9 +196,9 @@ Load it with:
 let config = try PostgresConfiguration.load(configFile: "config.yaml")
 ```
 
-## GitHub Actions
+---
 
-Create `.github/workflows/ci.yml`:
+## 🤖 GitHub Actions
 
 ```yaml
 name: CI
@@ -207,6 +231,8 @@ jobs:
         run: swift test --disable-sandbox
 ```
 
-## License
+---
 
-MIT
+## 📄 License
+
+This project is licensed under the MIT License.
