@@ -109,6 +109,6 @@ public struct Repository<T: Model> {
     /// Deletes a record by its UUID.
     public func delete(id: UUID) async throws {
         let sql = "DELETE FROM \(T.tableName) WHERE id = $1;"
-        _ = try await executor.execute(sql, [ PostgresData(binaryUUID: id) ])
+        _ = try await executor.execute(sql, [PostgresData(binaryUUID: id)])
     }
 }

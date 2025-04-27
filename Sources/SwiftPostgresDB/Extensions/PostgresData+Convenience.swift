@@ -6,16 +6,16 @@
 //
 
 import Foundation
-import NIOCore        // ByteBuffer & allocator
-import PostgresNIO    // PostgresData & PostgresDataType
+import NIOCore
+import PostgresNIO
 
 public extension PostgresData {
     /// Create a JSONB parameter from a raw JSON string.
     init(jsonString: String) {
         // JSONB binary format = 1-byte version + UTF-8 JSON text
         var buf = ByteBufferAllocator().buffer(capacity: jsonString.utf8.count + 1)
-        buf.writeInteger(UInt8(1))         // version byte
-        buf.writeString(jsonString)        // JSON payload
+        buf.writeInteger(UInt8(1)) // version byte
+        buf.writeString(jsonString) // JSON payload
 
         self.init(
             type: .jsonb,

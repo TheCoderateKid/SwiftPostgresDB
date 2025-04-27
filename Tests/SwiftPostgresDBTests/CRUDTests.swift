@@ -5,18 +5,10 @@
 //  Created by CL on 4/26/25.
 //
 
-
 import NIO
 import NIOCore
 @testable import SwiftPostgresDB
 import XCTest
-
-struct TestUser: Model {
-    static let tableName = "test_users"
-    var id: UUID?
-    var name: String
-    var email: String
-}
 
 final class CRUDTests: XCTestCase {
     func testCRUD() async throws {
@@ -54,4 +46,11 @@ final class CRUDTests: XCTestCase {
         try await pool.shutdown()
         try await group.shutdownGracefully()
     }
+}
+
+struct TestUser: Model {
+    static let tableName = "test_users"
+    var id: UUID?
+    var name: String
+    var email: String
 }
