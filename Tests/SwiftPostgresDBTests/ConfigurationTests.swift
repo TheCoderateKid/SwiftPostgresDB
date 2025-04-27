@@ -5,9 +5,8 @@
 //  Created by CL on 4/26/25.
 //
 
-
-import XCTest
 @testable import SwiftPostgresDB
+import XCTest
 
 final class ConfigurationTests: XCTestCase {
     func testDefault() {

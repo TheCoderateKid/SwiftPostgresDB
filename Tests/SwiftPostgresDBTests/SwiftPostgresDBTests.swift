@@ -1,5 +1,5 @@
-import XCTest
 @testable import SwiftPostgresDB
+import XCTest
 
 final class SwiftPostgresDBTests: XCTestCase {
     func testExample() throws {

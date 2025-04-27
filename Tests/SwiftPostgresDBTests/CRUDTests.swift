@@ -6,10 +6,10 @@
 //
 
 
-import XCTest
+import NIO
 import NIOCore
-import NIO                // brings in MultiThreadedEventLoopGroup
 @testable import SwiftPostgresDB
+import XCTest
 
 struct TestUser: Model {
     static let tableName = "test_users"

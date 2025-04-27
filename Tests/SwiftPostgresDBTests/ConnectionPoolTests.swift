@@ -5,11 +5,11 @@
 //  Created by CL on 4/26/25.
 //
 
-import XCTest
-import NIO                // brings in MultiThreadedEventLoopGroup
-import NIOPosix           // if you need the POSIX implementation
+import NIO
+import NIOPosix
 import PostgresNIO
 @testable import SwiftPostgresDB
+import XCTest
 
 final class ConnectionPoolTests: XCTestCase {
     func testOpenClose() async throws {

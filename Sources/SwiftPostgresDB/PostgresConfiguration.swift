@@ -5,10 +5,9 @@
 //  Created by CL on 4/26/25.
 //
 
-
 import Foundation
-import PostgresNIO
 import NIOSSL
+import PostgresNIO
 
 /// Holds and loads PostgreSQL connection settings.
 public struct PostgresConfiguration {
@@ -29,12 +28,12 @@ public struct PostgresConfiguration {
         tls: Bool? = nil
     ) {
         let env = ProcessInfo.processInfo.environment
-        self.host     = host     ?? env["PGHOST"]     ?? "localhost"
-        self.port     = port     ?? Int(env["PGPORT"] ?? "") ?? 5432
-        self.username = username ?? env["PGUSER"]     ?? "postgres"
+        self.host = host ?? env["PGHOST"] ?? "localhost"
+        self.port = port ?? Int(env["PGPORT"] ?? "") ?? 5432
+        self.username = username ?? env["PGUSER"] ?? "postgres"
         self.password = password ?? env["PGPASSWORD"] ?? ""
         self.database = database ?? env["PGDATABASE"] ?? "postgres"
-        self.tls      = tls      ?? (env["PGTLS"] == "true")
+        self.tls = tls ?? (env["PGTLS"] == "true")
     }
 
     /// Advanced loader: optional .env + JSON/YAML.

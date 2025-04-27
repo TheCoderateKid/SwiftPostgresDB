@@ -5,8 +5,8 @@
 //  Created by CL on 4/26/25.
 //
 
-import PostgresNIO
 import Foundation
+import PostgresNIO
 
 /// Basic CRUD for any `Model`.
 public struct Repository<T: Model> {
@@ -61,8 +61,7 @@ public struct Repository<T: Model> {
 
         // 2. Execute with our binary‐UUID parameter
         let rows = try await executor.execute(
-            sql,
-            [ PostgresData(binaryUUID: id) ]
+            sql, [PostgresData(binaryUUID: id)]
         )
 
         // 3. Bail out if no rows
@@ -84,7 +83,6 @@ public struct Repository<T: Model> {
         // 6. Decode into T and return
         return try JSONDecoder().decode(T.self, from: jsonData)
     }
-
 
     /// Updates an existing record.
     public func update(_ model: T) async throws {

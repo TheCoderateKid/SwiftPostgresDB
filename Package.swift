@@ -23,7 +23,7 @@ let package = Package(
             name: "SwiftPostgresDB",
             dependencies: [
                 .product(name: "PostgresNIO", package: "postgres-nio"),
-                .product(name: "Yams", package: "Yams"),
+                .product(name: "Yams", package: "Yams")
             ]
         ),
         .testTarget(
