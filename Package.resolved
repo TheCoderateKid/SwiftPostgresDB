@@ -1,5 +1,4 @@
 {
-  "originHash" : "d7b9820f36751982c95c4b2c541d0e7689a585ce968a7cf86c2029f0d06dfbc2",
   "pins" : [
     {
       "identity" : "postgres-nio",
@@ -128,5 +127,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
