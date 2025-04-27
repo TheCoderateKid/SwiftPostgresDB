@@ -8,7 +8,7 @@
 import Foundation
 
 /// Loads `.env` file entries into the process environment.
-public struct EnvLoader {
+public enum EnvLoader {
     public static func load(from path: String = ".env") throws {
         let url = URL(fileURLWithPath: path)
         let content = try String(contentsOf: url, encoding: .utf8)

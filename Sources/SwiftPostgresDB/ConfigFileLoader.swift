@@ -9,7 +9,7 @@ import Foundation
 import Yams
 
 /// Decodes JSON or YAML config into `PostgresConfiguration`.
-public struct ConfigFileLoader {
+public enum ConfigFileLoader {
     public static func load(from path: String) throws -> PostgresConfiguration {
         let url = URL(fileURLWithPath: path)
         let data = try Data(contentsOf: url)

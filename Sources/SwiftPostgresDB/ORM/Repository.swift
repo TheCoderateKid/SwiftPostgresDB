@@ -32,7 +32,7 @@ public struct Repository<T: Model> {
         // use our convenience initializers:
         let params: [PostgresData] = [
             PostgresData(binaryUUID: id),
-            PostgresData(jsonString: json)
+            PostgresData(jsonString: json),
         ]
 
         let rows = try await executor.execute(sql, params)
@@ -44,8 +44,8 @@ public struct Repository<T: Model> {
         let rar = PostgresRandomAccessRow(first)
         guard
             let returnedID = rar[data: "id"].uuid,
-            let dataText   = rar[data: "data"].string,
-            let d          = dataText.data(using: .utf8)
+            let dataText = rar[data: "data"].string,
+            let d = dataText.data(using: .utf8)
         else {
             throw PostgresError("Create failed decoding.")
         }
@@ -75,7 +75,7 @@ public struct Repository<T: Model> {
         // 5. Extract the JSON text from "data"
         guard
             let jsonString = rar[data: "data"].string,
-            let jsonData   = jsonString.data(using: .utf8)
+            let jsonData = jsonString.data(using: .utf8)
         else {
             return nil
         }
@@ -100,7 +100,7 @@ public struct Repository<T: Model> {
 
         let params: [PostgresData] = [
             PostgresData(jsonString: json),
-            PostgresData(binaryUUID: id)
+            PostgresData(binaryUUID: id),
         ]
 
         _ = try await executor.execute(sql, params)

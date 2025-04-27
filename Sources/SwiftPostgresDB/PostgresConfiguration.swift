@@ -41,11 +41,11 @@ public struct PostgresConfiguration {
         envFile: String? = nil,
         configFile: String? = nil
     ) throws -> PostgresConfiguration {
-        if let envFile = envFile {
+        if let envFile {
             try EnvLoader.load(from: envFile)
         }
-        if let path = configFile {
-            return try ConfigFileLoader.load(from: path)
+        if let configFile {
+            return try ConfigFileLoader.load(from: configFile)
         }
         return PostgresConfiguration()
     }

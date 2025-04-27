@@ -22,7 +22,7 @@ public actor ConnectionPool {
         eventLoopGroup: EventLoopGroup,
         maxConnections: Int = 10
     ) {
-        self.configuration = config.connection
+        configuration = config.connection
         self.eventLoopGroup = eventLoopGroup
         self.maxConnections = maxConnections
     }
@@ -43,7 +43,7 @@ public actor ConnectionPool {
                 .connect(
                     on: eventLoopGroup.next(),
                     configuration: configuration,
-                    id: 0,               // any Int metadata—0 is fine
+                    id: 0, // any Int metadata—0 is fine
                     logger: logger
                 )
                 .get()
