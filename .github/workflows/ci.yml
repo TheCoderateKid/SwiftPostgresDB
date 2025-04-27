@@ -14,12 +14,12 @@ jobs:
       - name: Setup Swift
         uses: fwal/setup-swift@v1
         with:
-          swift-version: '5.9'
+          swift-version: '6.0'
       - name: Install Tools
         run: |
           brew install swiftformat swiftlint || true
       - name: Format Check
-        run: swiftformat . --disable trailingCommas --lint --swiftversion 5.9
+        run: swiftformat . --disable trailingCommas --lint --swiftversion 6.0
       - name: Lint
         run: swiftlint lint --strict
       - name: Build
