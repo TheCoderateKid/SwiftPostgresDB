@@ -220,8 +220,8 @@ jobs:
         run: |
           brew install swiftformat swiftlint || true
       - name: Format Check
-        run: swiftformat --lint . --swiftversion 5.9
-      - name: Lint
+        run: swiftformat . --disable trailingCommas --lint --swiftversion 5.9
+       - name: Lint
         run: swiftlint lint --strict
       - name: Build
         run: swift build --disable-sandbox
