@@ -15,7 +15,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/postgres-nio.git", from: "1.24.0"),
+        .package(url: "https://github.com/vapor/postgres-nio.git", from: "1.22.0"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "5.3.1")
     ],
     targets: [
