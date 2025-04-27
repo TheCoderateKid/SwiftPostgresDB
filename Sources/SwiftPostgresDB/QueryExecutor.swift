@@ -31,6 +31,7 @@ public struct QueryExecutor {
             await pool.release(conn)
             throw error
         }
+
         // 3. Release and return
         await pool.release(conn)
         return rows
@@ -40,7 +41,6 @@ public struct QueryExecutor {
     public func executeStatement(_ sql: String) async throws {
         // 1. Borrow
         let conn = try await pool.connection()
-
         // 2. Execute, releasing on error or success
         do {
             _ = try await conn.simpleQuery(sql).get()
@@ -52,4 +52,3 @@ public struct QueryExecutor {
         await pool.release(conn)
     }
 }
-
