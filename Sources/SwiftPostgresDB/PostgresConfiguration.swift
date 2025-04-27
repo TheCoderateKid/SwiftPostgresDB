@@ -55,10 +55,13 @@ public struct PostgresConfiguration {
         // Build the TLS mode
         let tlsMode: PostgresConnection.Configuration.TLS = {
             guard tls else { return .disable }
-            // Build a TLSConfiguration
             let sslConfig = TLSConfiguration.makeClientConfiguration()
-            // Wrap it in an NIOSSLContext
-            let sslContext = try! NIOSSLContext(configuration: sslConfig)
+            let sslContext: NIOSSLContext
+            do {
+                sslContext = try NIOSSLContext(configuration: sslConfig)
+            } catch {
+                fatalError("Unable to create NIOSSLContext: \(error)")
+            }
             return .require(sslContext)
         }()
 

@@ -45,9 +45,9 @@ public extension PostgresData {
 
     /// Create a UUID parameter in **text** format (e.g. "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX").
     init(textUUID uuid: UUID) {
-        let s = uuid.uuidString
-        var buf = ByteBufferAllocator().buffer(capacity: s.utf8.count)
-        buf.writeString(s)
+        let uuidText = uuid.uuidString
+        var buf = ByteBufferAllocator().buffer(capacity: uuidText.utf8.count)
+        buf.writeString(uuidText)
 
         self.init(
             type: .uuid,

@@ -32,7 +32,7 @@ public struct Repository<T: Model> {
         // use our convenience initializers:
         let params: [PostgresData] = [
             PostgresData(binaryUUID: id),
-            PostgresData(jsonString: json),
+            PostgresData(jsonString: json)
         ]
 
         let rows = try await executor.execute(sql, params)
@@ -45,13 +45,13 @@ public struct Repository<T: Model> {
         guard
             let returnedID = rar[data: "id"].uuid,
             let dataText = rar[data: "data"].string,
-            let d = dataText.data(using: .utf8)
+            let decodedData = dataText.data(using: .utf8)
         else {
             throw PostgresError("Create failed decoding.")
         }
 
         model.id = returnedID
-        model = try JSONDecoder().decode(T.self, from: d)
+        model = try JSONDecoder().decode(T.self, from: decodedData)
     }
 
     /// Fetches a record by its UUID.
@@ -100,7 +100,7 @@ public struct Repository<T: Model> {
 
         let params: [PostgresData] = [
             PostgresData(jsonString: json),
-            PostgresData(binaryUUID: id),
+            PostgresData(binaryUUID: id)
         ]
 
         _ = try await executor.execute(sql, params)

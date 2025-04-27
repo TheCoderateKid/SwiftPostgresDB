@@ -10,8 +10,14 @@ import XCTest
 
 final class ConfigurationTests: XCTestCase {
     func testDefault() {
-        let c = PostgresConfiguration()
-        XCTAssertEqual(c.host, ProcessInfo.processInfo.environment["PGHOST"] ?? "localhost")
-        XCTAssertEqual(c.port, Int(ProcessInfo.processInfo.environment["PGPORT"] ?? "") ?? 5432)
+        let config = PostgresConfiguration()
+        XCTAssertEqual(
+            config.host,
+            ProcessInfo.processInfo.environment["PGHOST"] ?? "localhost"
+        )
+        XCTAssertEqual(
+            config.port,
+            Int(ProcessInfo.processInfo.environment["PGPORT"] ?? "") ?? 5432
+        )
     }
 }

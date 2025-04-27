@@ -29,18 +29,19 @@ final class CRUDTests: XCTestCase {
         try await repo.create(&user)
         XCTAssertNotNil(user.id)
 
-        let f1 = try await repo.find(id: user.id!)
-        XCTAssertEqual(f1?.name, "Bob")
+        let fetchedUser = try await repo.find(id: user.id!)
+        XCTAssertEqual(fetchedUser?.name, "Bob")
 
-        var updated = f1!
-        updated.email = "bob2@example.com"
-        try await repo.update(updated)
-        let f2 = try await repo.find(id: updated.id!)
-        XCTAssertEqual(f2?.email, "bob2@example.com")
+        var updatedUser = fetchedUser!
+        updatedUser.email = "bob2@example.com"
+        try await repo.update(updatedUser)
 
-        try await repo.delete(id: updated.id!)
-        let f3 = try await repo.find(id: updated.id!)
-        XCTAssertNil(f3)
+        let fetchedUpdatedUser = try await repo.find(id: updatedUser.id!)
+        XCTAssertEqual(fetchedUpdatedUser?.email, "bob2@example.com")
+
+        try await repo.delete(id: updatedUser.id!)
+        let deletedUser = try await repo.find(id: updatedUser.id!)
+        XCTAssertNil(deletedUser)
 
         try await exec.executeStatement("DROP TABLE test_users;")
         try await pool.shutdown()
