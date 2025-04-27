@@ -222,7 +222,7 @@ jobs:
         run: |
           brew install swiftformat swiftlint || true
       - name: Format Check
-        run: swiftformat --lint Sources Tests
+        run: swiftformat --lint .
       - name: Lint
         run: swiftlint lint --strict
       - name: Build
