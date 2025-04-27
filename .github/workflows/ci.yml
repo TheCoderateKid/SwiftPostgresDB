@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop, 'feature/**' ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Swift
+        uses: fwal/setup-swift@v1
+        with:
+          swift-version: '5.9'
+      - name: Install Tools
+        run: |
+          brew install swiftformat swiftlint || true
+      - name: Format Check
+        run: swiftformat --lint Sources Tests
+      - name: Lint
+        run: swiftlint lint --strict
+      - name: Build
+        run: swift build --disable-sandbox
+      - name: Test
+        run: swift test --disable-sandbox
+
