@@ -1,6 +1,28 @@
+[![CI](https://github.com/thecoderatekid/SwiftPostgresDB/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/SwiftPostgresDB/actions)
+[![Swift 5.9+](https://img.shields.io/badge/swift-5.9%2B-orange.svg)](https://swift.org)
+[![Platforms](https://img.shields.io/badge/platforms-macOS%2012%2B%20%7C%20Linux-blue.svg)](https://swift.org/platform-support)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 # SwiftPostgresDB
 
 A lightweight, performant, and easy-to-use PostgreSQL integration for Swift 5.9+ applications. It provides connection pooling, query execution, an ORM-like layer, transaction management, and robust error handling.
+
+---
+
+## Table of Contents
+
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [ORM Example](#orm-example)
+- [Configuration](#configuration)
+  - [Environment & `.env`](#environment--env)
+  - [JSON/YAML](#jsonyaml)
+- [GitHub Actions](#github-actions)
+- [License](#license)
+
+---
 
 ## Features
 
