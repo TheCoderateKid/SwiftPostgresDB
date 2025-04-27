@@ -6,8 +6,6 @@
 [![Docs](https://img.shields.io/badge/docs-SwiftDoc-blue?style=flat-square&logo=read-the-docs)](https://github.com/thecoderatekid/SwiftPostgresDB#readme)
 [![GitHub Stars](https://img.shields.io/github/stars/thecoderatekid/SwiftPostgresDB?style=flat-square&logo=github)](https://github.com/thecoderatekid/SwiftPostgresDB/stargazers)
 [![Contributors](https://img.shields.io/github/contributors/thecoderatekid/SwiftPostgresDB?style=flat-square&logo=github)](https://github.com/thecoderatekid/SwiftPostgresDB/graphs/contributors)
-[![Discord](https://img.shields.io/discord/000000000000000000?style=flat-square&logo=discord)](https://discord.gg/your-invite)
-[![Twitter Follow](https://img.shields.io/twitter/follow/yourhandle?style=flat-square&logo=twitter)](https://twitter.com/yourhandle)
 
 # SwiftPostgresDB
 
